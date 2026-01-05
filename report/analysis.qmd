@@ -33,7 +33,7 @@ This is a preliminary and evolving analysis. The literature review is not intend
 
 ### Data Source
 
-Data for this analysis come from the **National Health and Nutrition Examination Survey (NHANES) 2013–2014 cycle**, a cross-sectional survey designed to assess the health and nutritional status of the non-institutionalized U.S. population.
+Data for this analysis come from the [**National Health and Nutrition Examination Survey (NHANES) 2013–2014 cycle**](https://wwwn.cdc.gov/nchs/nhanes/continuousnhanes/default.aspx?BeginYear=2013), a cross-sectional survey designed to assess the health and nutritional status of the non-institutionalized U.S. population.
 
 ### Study Sample
 
@@ -104,3 +104,19 @@ A broad set of variables were selected based on prior evidence linking demograph
 -    History of stroke [@pendlebury2009]
 
 These variables were drawn from NHANES **Demographic**, **Questionnaire**, and **Examination** components.
+
+## Data Merging
+
+Data from multiple NHANES modules were merged using the unique participant identifier (`SEQN`).
+
+## Missing Data
+
+## Exploratory Data Analysis (EDA)
+
+## Statistical Modeling
+
+## Limitations
+
+## Conclusion
+
+## References

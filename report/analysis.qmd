@@ -1,27 +1,106 @@
 ---
-title: "analysis"
-author: "Douaa"
+title: "nhanes-dsst-congition-analysis"
+author: "Douaa Khalil"
 format: html
+bibliography: references.bib
 editor: visual
 ---
 
-## Quarto
-
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
-
-```{r}
-1 + 1
+```{=html}
+<style>
+p {
+  text-align: justify;
+}
+</style>
 ```
+## Research Question and Introduction
 
-You can add options to executable code like this
+### Research Question
 
-```{r}
-#| echo: false
-2 * 2
-```
+What factors are associated with cognitive functioning among adults aged 60 years and older in the United States?
 
-The `echo: false` option disables the printing of code (only output is displayed).
+### Introduction
+
+Cognitive functioning is a key component of healthy aging and is closely linked to independence, quality of life, and overall well-being among older adults. Declines in cognitive performance are associated with increased risk of disability, institutionalization, and mortality, making the identification of factors related to cognitive health a public health priority [@rivan2021cognitive].
+
+Cognitive functioning in later life is influenced by a complex interplay of demographic, socioeconomic, behavioral, physical, and mental health factors. The goal of this analysis is to explore associations between cognitive performance and a broad set of variables among U.S. adults aged 60 years and older, using data from a nationally representative health survey. This report is **exploratory and iterative in nature** and will be updated as the project progresses.
+
+::: callout-note
+This is a preliminary and evolving analysis. The literature review is not intended to be exhaustive, and modeling decisions (including weighting and missing data handling) will be refined in future versions.
+:::
+
+## Data Source and Sample
+
+### Data Source
+
+Data for this analysis come from the **National Health and Nutrition Examination Survey (NHANES) 2013–2014 cycle**, a cross-sectional survey designed to assess the health and nutritional status of the non-institutionalized U.S. population.
+
+### Study Sample
+
+The analytic sample includes **adults aged 60 years and older** who participated in the cognitive function component of NHANES. The working dataset contains 1785 participants.
+
+At this stage, analyses are conducted on the unweighted sample. **Survey weights will be incorporated in later modeling stages** to produce population-representative estimates and to appropriately account for the complex survey design.
+
+## Outcome: Cognitive Function
+
+### Digit Symbol Substitution Test
+
+Cognitive functioning is assessed using the **Digit Symbol Substitution Test (DSST)**, a widely used neuropsychological test administered in NHANES as part of the cognitive function examination for older adults [@jaeger2018digit].
+
+The DSST measures general cognitive performance, such as:
+
+-   Processing speed
+
+-   Sustained attention
+
+-   Working memory
+
+Participants are asked to match symbols to numbers according to a key within a fixed time limit. The final score reflects the **number of correct matches**, with higher scores indicating better cognitive performance.
+
+In NHANES 2013–2014, DSST scores range from **0 to 133**, with observed scores in this sample spanning a narrower range typical of older populations. The DSST is particularly sensitive to age-related cognitive changes and has been shown to predict functional decline and mortality in older adults [@rosano2008association].
+
+## Candidate Predictors and Related Literature
+
+A broad set of variables were selected based on prior evidence linking demographic characteristics, lifestyle behaviors, health, and chronic conditions to cognitive function. The literature review guiding variable selection is **intentionally brief and non-exhaustive**, serving primarily to motivate exploratory analysis.
+
+### Demographic and Socioeconomic Factors
+
+-   Age [@salthouse2010]
+
+-   Gender [@mcCarrey2016]
+
+-   Marital status [@fratiglioni2004]
+
+-   Educational attainment [@stern2012]
+
+-   Income-to-poverty ratio [@jefferson2011life]
+
+### Lifestyle Behaviors
+
+-   Alcohol consumption [@anstey2009alcohol]
+
+-   Smoking status [@peters2008smoking]
+
+-   Physical activity / recreational activity [@erickson2011]
+
+-   Sleep duration [@yaffe2014connections]
+
+-   Diet quality (self-reported) [@arikawa2025cognitive]
+
+### Physical and Cardiometabolic Health
+
+-   Body mass index (BMI) [@fitzpatrick2009]
+
+-   Blood pressure / hypertension indicators [@iadecola2016]
+
+-   Diabetes status [@biessels2006]
+
+-   Cardiovascular conditions [@gorelick2011]
+
+### Mental and Neurological Health
+
+-    Depression symptoms (PHQ-9 score) [@ganguli2006depressive]
+
+-    History of stroke [@pendlebury2009]
+
+These variables were drawn from NHANES **Demographic**, **Questionnaire**, and **Examination** components.

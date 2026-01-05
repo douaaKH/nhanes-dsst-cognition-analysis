@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Douaa">
+<meta name="author" content="Douaa Khalil">
 
-<title>analysis</title>
+<title>nhanes-dsst-congition-analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,41 +21,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
 }
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
 }
-</style>
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="analysis_files/libs/clipboard/clipboard.min.js"></script>
@@ -80,7 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">analysis</h1>
+<h1 class="title">nhanes-dsst-congition-analysis</h1>
 </div>
 
 
@@ -90,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Douaa </p>
+             <p>Douaa Khalil </p>
           </div>
   </div>
     
@@ -103,29 +89,165 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="quarto" class="level2">
-<h2 class="anchored" data-anchor-id="quarto">Quarto</h2>
-<p>Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <a href="https://quarto.org" class="uri">https://quarto.org</a>.</p>
+<style>
+p {
+  text-align: justify;
+}
+</style>
+<section id="research-question-and-introduction" class="level2">
+<h2 class="anchored" data-anchor-id="research-question-and-introduction">Research Question and Introduction</h2>
+<section id="research-question" class="level3">
+<h3 class="anchored" data-anchor-id="research-question">Research Question</h3>
+<p>What factors are associated with cognitive functioning among adults aged 60 years and older in the United States?</p>
 </section>
-<section id="running-code" class="level2">
-<h2 class="anchored" data-anchor-id="running-code">Running Code</h2>
-<p>When you click the <strong>Render</strong> button a document will be generated that includes both content and the output of embedded code. You can embed code like this:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
+<section id="introduction" class="level3">
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
+<p>Cognitive functioning is a key component of healthy aging and is closely linked to independence, quality of life, and overall well-being among older adults. Declines in cognitive performance are associated with increased risk of disability, institutionalization, and mortality, making the identification of factors related to cognitive health a public health priority <span class="citation" data-cites="rivan2021cognitive">(<a href="#ref-rivan2021cognitive" role="doc-biblioref">Rivan et al. 2021</a>)</span>.</p>
+<p>Cognitive functioning in later life is influenced by a complex interplay of demographic, socioeconomic, behavioral, physical, and mental health factors. The goal of this analysis is to explore associations between cognitive performance and a broad set of variables among U.S. adults aged 60 years and older, using data from a nationally representative health survey. This report is <strong>exploratory and iterative in nature</strong> and will be updated as the project progresses.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
 </div>
 </div>
-<p>You can add options to executable code like this</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
+<div class="callout-body-container callout-body">
+<p>This is a preliminary and evolving analysis. The literature review is not intended to be exhaustive, and modeling decisions (including weighting and missing data handling) will be refined in future versions.</p>
 </div>
 </div>
-<p>The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
+</section>
+</section>
+<section id="data-source-and-sample" class="level2">
+<h2 class="anchored" data-anchor-id="data-source-and-sample">Data Source and Sample</h2>
+<section id="data-source" class="level3">
+<h3 class="anchored" data-anchor-id="data-source">Data Source</h3>
+<p>Data for this analysis come from the <strong>National Health and Nutrition Examination Survey (NHANES) 2013–2014 cycle</strong>, a cross-sectional survey designed to assess the health and nutritional status of the non-institutionalized U.S. population.</p>
+</section>
+<section id="study-sample" class="level3">
+<h3 class="anchored" data-anchor-id="study-sample">Study Sample</h3>
+<p>The analytic sample includes <strong>adults aged 60 years and older</strong> who participated in the cognitive function component of NHANES. The working dataset contains 1785 participants.</p>
+<p>At this stage, analyses are conducted on the unweighted sample. <strong>Survey weights will be incorporated in later modeling stages</strong> to produce population-representative estimates and to appropriately account for the complex survey design.</p>
+</section>
+</section>
+<section id="outcome-cognitive-function" class="level2">
+<h2 class="anchored" data-anchor-id="outcome-cognitive-function">Outcome: Cognitive Function</h2>
+<section id="digit-symbol-substitution-test" class="level3">
+<h3 class="anchored" data-anchor-id="digit-symbol-substitution-test">Digit Symbol Substitution Test</h3>
+<p>Cognitive functioning is assessed using the <strong>Digit Symbol Substitution Test (DSST)</strong>, a widely used neuropsychological test administered in NHANES as part of the cognitive function examination for older adults <span class="citation" data-cites="jaeger2018digit">(<a href="#ref-jaeger2018digit" role="doc-biblioref">Jaeger 2018</a>)</span>.</p>
+<p>The DSST measures general cognitive performance, such as:</p>
+<ul>
+<li><p>Processing speed</p></li>
+<li><p>Sustained attention</p></li>
+<li><p>Working memory</p></li>
+</ul>
+<p>Participants are asked to match symbols to numbers according to a key within a fixed time limit. The final score reflects the <strong>number of correct matches</strong>, with higher scores indicating better cognitive performance.</p>
+<p>In NHANES 2013–2014, DSST scores range from <strong>0 to 133</strong>, with observed scores in this sample spanning a narrower range typical of older populations. The DSST is particularly sensitive to age-related cognitive changes and has been shown to predict functional decline and mortality in older adults <span class="citation" data-cites="rosano2008association">(<a href="#ref-rosano2008association" role="doc-biblioref">Rosano et al. 2008</a>)</span>.</p>
+</section>
+</section>
+<section id="candidate-predictors-and-related-literature" class="level2">
+<h2 class="anchored" data-anchor-id="candidate-predictors-and-related-literature">Candidate Predictors and Related Literature</h2>
+<p>A broad set of variables were selected based on prior evidence linking demographic characteristics, lifestyle behaviors, health, and chronic conditions to cognitive function. The literature review guiding variable selection is <strong>intentionally brief and non-exhaustive</strong>, serving primarily to motivate exploratory analysis.</p>
+<section id="demographic-and-socioeconomic-factors" class="level3">
+<h3 class="anchored" data-anchor-id="demographic-and-socioeconomic-factors">Demographic and Socioeconomic Factors</h3>
+<ul>
+<li><p>Age <span class="citation" data-cites="salthouse2010">(<a href="#ref-salthouse2010" role="doc-biblioref">Salthouse 2010</a>)</span></p></li>
+<li><p>Gender <span class="citation" data-cites="mcCarrey2016">(<a href="#ref-mcCarrey2016" role="doc-biblioref">McCarrey et al. 2016</a>)</span></p></li>
+<li><p>Marital status <span class="citation" data-cites="fratiglioni2004">(<a href="#ref-fratiglioni2004" role="doc-biblioref">Fratiglioni et al. 2004</a>)</span></p></li>
+<li><p>Educational attainment <span class="citation" data-cites="stern2012">(<a href="#ref-stern2012" role="doc-biblioref">Stern 2012</a>)</span></p></li>
+<li><p>Income-to-poverty ratio <span class="citation" data-cites="jefferson2011life">(<a href="#ref-jefferson2011life" role="doc-biblioref">Jefferson et al. 2011</a>)</span></p></li>
+</ul>
+</section>
+<section id="lifestyle-behaviors" class="level3">
+<h3 class="anchored" data-anchor-id="lifestyle-behaviors">Lifestyle Behaviors</h3>
+<ul>
+<li><p>Alcohol consumption <span class="citation" data-cites="anstey2009alcohol">(<a href="#ref-anstey2009alcohol" role="doc-biblioref">Anstey et al. 2009</a>)</span></p></li>
+<li><p>Smoking status <span class="citation" data-cites="peters2008smoking">(<a href="#ref-peters2008smoking" role="doc-biblioref">Peters et al. 2008</a>)</span></p></li>
+<li><p>Physical activity / recreational activity <span class="citation" data-cites="erickson2011">(<a href="#ref-erickson2011" role="doc-biblioref">Erickson et al. 2011</a>)</span></p></li>
+<li><p>Sleep duration <span class="citation" data-cites="yaffe2014connections">(<a href="#ref-yaffe2014connections" role="doc-biblioref">Yaffe et al. 2014</a>)</span></p></li>
+<li><p>Diet quality (self-reported) <span class="citation" data-cites="arikawa2025cognitive">(<a href="#ref-arikawa2025cognitive" role="doc-biblioref">Arikawa et al. 2025</a>)</span></p></li>
+</ul>
+</section>
+<section id="physical-and-cardiometabolic-health" class="level3">
+<h3 class="anchored" data-anchor-id="physical-and-cardiometabolic-health">Physical and Cardiometabolic Health</h3>
+<ul>
+<li><p>Body mass index (BMI) <span class="citation" data-cites="fitzpatrick2009">(<a href="#ref-fitzpatrick2009" role="doc-biblioref">Fitzpatrick et al. 2009</a>)</span></p></li>
+<li><p>Blood pressure / hypertension indicators <span class="citation" data-cites="iadecola2016">(<a href="#ref-iadecola2016" role="doc-biblioref">Iadecola et al. 2016</a>)</span></p></li>
+<li><p>Diabetes status <span class="citation" data-cites="biessels2006">(<a href="#ref-biessels2006" role="doc-biblioref">Biessels et al. 2006</a>)</span></p></li>
+<li><p>Cardiovascular conditions <span class="citation" data-cites="gorelick2011">(<a href="#ref-gorelick2011" role="doc-biblioref">Gorelick et al. 2011</a>)</span></p></li>
+</ul>
+</section>
+<section id="mental-and-neurological-health" class="level3">
+<h3 class="anchored" data-anchor-id="mental-and-neurological-health">Mental and Neurological Health</h3>
+<ul>
+<li><p>Depression symptoms (PHQ-9 score) <span class="citation" data-cites="ganguli2006depressive">(<a href="#ref-ganguli2006depressive" role="doc-biblioref">Ganguli et al. 2006</a>)</span></p></li>
+<li><p>History of stroke <span class="citation" data-cites="pendlebury2009">(<a href="#ref-pendlebury2009" role="doc-biblioref">Pendlebury et al. 2009</a>)</span></p></li>
+</ul>
+<p>These variables were drawn from NHANES <strong>Demographic</strong>, <strong>Questionnaire</strong>, and <strong>Examination</strong> components.</p>
+
+</section>
 </section>
 
-</main>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-anstey2009alcohol" class="csl-entry" role="listitem">
+Anstey, Kaarin J et al. 2009. <span>“Alcohol Consumption as a Risk Factor for Dementia and Cognitive Decline: Meta-Analysis of Prospective Studies.”</span> <em>The American Journal of Geriatric Psychiatry</em> 17 (7): 542–55.
+</div>
+<div id="ref-arikawa2025cognitive" class="csl-entry" role="listitem">
+Arikawa, Andrea Y et al. 2025. <span>“Cognitive Impairment Is Associated with Alterations in Diet Quality and Inflammatory Biomarkers in Older Adults: A Cross-Sectional Analysis of Data Collected from the Microbiome in Aging Gut and Brain (MiaGB) Consortium Cohort.”</span> <em>The Journal of Nutrition</em>.
+</div>
+<div id="ref-biessels2006" class="csl-entry" role="listitem">
+Biessels, G. J. et al. 2006. <span>“Risk of Dementia in Diabetes Mellitus: A Systematic Review.”</span> <em>The Lancet Neurology</em> 5 (1): 64–74.
+</div>
+<div id="ref-erickson2011" class="csl-entry" role="listitem">
+Erickson, Kirk I. et al. 2011. <span>“Exercise Training Increases Size of Hippocampus and Improves Memory.”</span> <em>Proceedings of the National Academy of Sciences</em> 108 (7): 3017–22.
+</div>
+<div id="ref-fitzpatrick2009" class="csl-entry" role="listitem">
+Fitzpatrick, A. L. et al. 2009. <span>“Midlife and Late-Life Obesity and the Risk of Dementia: Cardiovascular Health Study.”</span> <em>Archives of Neurology</em> 66 (3): 336–42.
+</div>
+<div id="ref-fratiglioni2004" class="csl-entry" role="listitem">
+Fratiglioni, Laura et al. 2004. <span>“An Active and Socially Integrated Lifestyle in Late Life Might Protect Against Dementia.”</span> <em>The Lancet Neurology</em> 3 (6): 343–53.
+</div>
+<div id="ref-ganguli2006depressive" class="csl-entry" role="listitem">
+Ganguli, Mary et al. 2006. <span>“Depressive Symptoms and Cognitive Decline in Late Life: A Prospective Epidemiological Study.”</span> <em>Archives of General Psychiatry</em> 63 (2): 153–60.
+</div>
+<div id="ref-gorelick2011" class="csl-entry" role="listitem">
+Gorelick, P. B. et al. 2011. <span>“Vascular Contributions to Cognitive Impairment and Dementia: A Statement for Healthcare Professionals from the American Heart Association/American Stroke Association.”</span> <em>Stroke</em> 42 (9): 2672–2713.
+</div>
+<div id="ref-iadecola2016" class="csl-entry" role="listitem">
+Iadecola, Costantino et al. 2016. <span>“Impact of Hypertension on Cognitive Function: A Scientific Statement from the American Heart Association.”</span> <em>Hypertension</em> 68 (6): e67–94.
+</div>
+<div id="ref-jaeger2018digit" class="csl-entry" role="listitem">
+Jaeger, Judith. 2018. <span>“Digit Symbol Substitution Test: The Case for Sensitivity over Specificity in Neuropsychological Testing.”</span> <em>Journal of Clinical Psychopharmacology</em> 38 (5): 513–19.
+</div>
+<div id="ref-jefferson2011life" class="csl-entry" role="listitem">
+Jefferson, Angela L et al. 2011. <span>“A Life Course Model of Cognitive Activities, Socioeconomic Status, Education, Reading Ability, and Cognition.”</span> <em>Journal of the American Geriatrics Society</em> 59 (8): 1403–11.
+</div>
+<div id="ref-mcCarrey2016" class="csl-entry" role="listitem">
+McCarrey, A. C. et al. 2016. <span>“Sex Differences in Cognitive Trajectories in Clinically Normal Older Adults.”</span> <em>Psychology and Aging</em> 31 (2): 166–75.
+</div>
+<div id="ref-pendlebury2009" class="csl-entry" role="listitem">
+Pendlebury, S. T. et al. 2009. <span>“Prevalence, Incidence, and Factors Associated with Pre-Stroke and Post-Stroke Dementia: A Systematic Review and Meta-Analysis.”</span> <em>The Lancet Neurology</em> 8 (11): 1006–18.
+</div>
+<div id="ref-peters2008smoking" class="csl-entry" role="listitem">
+Peters, Ruth et al. 2008. <span>“Smoking, Dementia and Cognitive Decline in the Elderly, a Systematic Review.”</span> <em>BMC Geriatrics</em> 8 (1): 36.
+</div>
+<div id="ref-rivan2021cognitive" class="csl-entry" role="listitem">
+Rivan, Nurul Fatin Malek et al. 2021. <span>“Cognitive Frailty Is a Robust Predictor of Falls, Injuries, and Disability Among Community-Dwelling Older Adults.”</span> <em>BMC Geriatrics</em> 21 (1): 593.
+</div>
+<div id="ref-rosano2008association" class="csl-entry" role="listitem">
+Rosano, Caterina et al. 2008. <span>“Association Between Lower Digit Symbol Substitution Test Score and Slower Gait and Greater Risk of Mortality and of Developing Incident Disability in Well-Functioning Older Adults.”</span> <em>Journal of the American Geriatrics Society</em> 56 (9): 1618–25.
+</div>
+<div id="ref-salthouse2010" class="csl-entry" role="listitem">
+Salthouse, Timothy A. 2010. <span>“Selective Review of Cognitive Aging.”</span> <em>Journal of the International Neuropsychological Society</em> 16 (5): 754–60.
+</div>
+<div id="ref-stern2012" class="csl-entry" role="listitem">
+Stern, Yaakov. 2012. <span>“Cognitive Reserve in Ageing and Alzheimer’s Disease.”</span> <em>The Lancet Neurology</em> 11 (11): 1006–12.
+</div>
+<div id="ref-yaffe2014connections" class="csl-entry" role="listitem">
+Yaffe, Kristine et al. 2014. <span>“Connections Between Sleep and Cognition in Older Adults.”</span> <em>The Lancet Neurology</em> 13 (10): 1017–28.
+</div>
+</div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {

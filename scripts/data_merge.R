@@ -43,10 +43,11 @@ alq_h_custom <- alq_h_custom %>%
     alcohol_drinks_week = case_when(
       ALQ120Q == 0        ~ 0,
       is.na(ALQ120Q)      ~ NA_real_,
+      # Refused (777) and Don't know (999) will be converted to NA
       ALQ120U == "Week"   ~ ALQ120Q,
       ALQ120U == "Month"  ~ ALQ120Q / 4.345, # weeks per month
       ALQ120U == "Year"  ~ ALQ120Q / 52.14, # weeks per year
-      TRUE ~ NA_real_
+      TRUE ~ NA_real_ 
     )
   )
 ## import smoking related table from dataset

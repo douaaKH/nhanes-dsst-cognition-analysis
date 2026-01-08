@@ -443,7 +443,13 @@ Note
 </div>
 </div>
 <p><br></p>
-<p>Overall, there are 1785 rows and 18 columns (including <code>SEQN)</code>. Let’s look at how many missing values are per variable:</p>
+<p>Overall, there are 1785 rows and 18 columns (including <code>SEQN)</code>.</p>
+<p>Missing data (NA) will be addressed in the subsequent section.</p>
+</section>
+</section>
+<section id="missing-data" class="level2">
+<h2 class="anchored" data-anchor-id="missing-data">Missing Data</h2>
+<p>First, let’s take a look at how many missing values are per variable:</p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
@@ -499,17 +505,17 @@ Note
 <td style="text-align: center;">193.0</td>
 <td style="text-align: center;">0</td>
 <td style="text-align: center;">0</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">0</td>
+<td style="text-align: center;">2.0</td>
+<td style="text-align: center;">3.0</td>
 <td style="text-align: center;">201.0</td>
 <td style="text-align: center;">410</td>
 <td style="text-align: center;">895.0</td>
-<td style="text-align: center;">3.0</td>
-<td style="text-align: center;">0</td>
+<td style="text-align: center;">5.0</td>
+<td style="text-align: center;">1.0</td>
 <td style="text-align: center;">36</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">0</td>
+<td style="text-align: center;">1.0</td>
+<td style="text-align: center;">12.0</td>
+<td style="text-align: center;">4.0</td>
 <td style="text-align: center;">143</td>
 <td style="text-align: center;">0</td>
 <td style="text-align: center;">26.0</td>
@@ -520,17 +526,17 @@ Note
 <td style="text-align: center;">10.8</td>
 <td style="text-align: center;">0</td>
 <td style="text-align: center;">0</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">0</td>
+<td style="text-align: center;">0.1</td>
+<td style="text-align: center;">0.2</td>
 <td style="text-align: center;">11.3</td>
 <td style="text-align: center;">23</td>
 <td style="text-align: center;">50.1</td>
-<td style="text-align: center;">0.2</td>
-<td style="text-align: center;">0</td>
+<td style="text-align: center;">0.3</td>
+<td style="text-align: center;">0.1</td>
 <td style="text-align: center;">2</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">0</td>
+<td style="text-align: center;">0.1</td>
+<td style="text-align: center;">0.7</td>
+<td style="text-align: center;">0.2</td>
 <td style="text-align: center;">8</td>
 <td style="text-align: center;">0</td>
 <td style="text-align: center;">1.5</td>
@@ -540,12 +546,35 @@ Note
 </div>
 </div>
 <p><br></p>
-<p>Some variables include rare responses (e.g., “Refused” or “Don’t know”), which have been (cases: derived alcohol drinks per week, physical activity, and depression scores) or will be recoded as NA to simplify modeling and avoid inflating the number of levels with very few observations. This procedure may slightly increase overall missingness for certain predictors. Additionally, variables with many categories (such as education, marital status, diet, and others) will be examined and, if necessary, collapsed into fewer levels to facilitate interpretation.</p>
-<p>Missing data will be addressed in the subsequent section.</p>
-</section>
-</section>
-<section id="missing-data" class="level2">
-<h2 class="anchored" data-anchor-id="missing-data">Missing Data</h2>
+<p>In total, there are 1128 or around 63.19% incomplete rows.</p>
+<p>Some variables include rare responses (e.g., “Refused” or “Don’t know”), which have been recoded as NA to simplify modeling and avoid inflating the number of levels with very few observations. This procedure slightly increased overall missingness for certain predictors. Notably:</p>
+<ul>
+<li><p><strong>Marital status:</strong> 100% of missing values (n = 2) correspond to “Refused” and “Don’t know” responses.</p></li>
+<li><p><strong>Education level:</strong> 100% of missing values (n = 3) correspond to “Don’t know.”</p></li>
+<li><p><strong>Sleep hours:</strong> 40% of missing values (n = 2) correspond to “Don’t know.”</p></li>
+<li><p><strong>Healthy diet:</strong> 100% of missing values (n = 1) correspond to “Don’t know.”</p></li>
+<li><p><strong>Diabetes:</strong> 100% of missing values (n = 1) correspond to “Don’t know.”</p></li>
+<li><p><strong>Coronary disease:</strong> 100% of missing values (n = 12) correspond to “Don’t know.”</p></li>
+<li><p><strong>Stroke:</strong> 100% of missing values (n = 4) correspond to “Don’t know.”</p></li>
+</ul>
+<p>Several variables exhibit higher overall levels of missingness and warrant further investigation, including <strong>smoking status</strong> (50.10% missing), <strong>income-to-poverty ratio</strong> (11.30%), <strong>alcohol consumption</strong> (23.00%), <strong>PHQ-9 score</strong> (8.00% total missing; among these, 12.58% reflect partial questionnaire completion and were recoded as missing), and <strong>BMI</strong> (2.00%).</p>
+<p>The outcome variable, <strong>DSST score</strong>, has approximately 10.80% missing values. Importantly, the NHANES survey provides explicit reasons for non-administration of the DSST (check <code>CFDDPP</code>, <code>CFDDRNC</code>, and <code>CFASTAT</code> variables in NHANES), allowing for a more informed assessment of outcome missingness.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-dsst-reasons-missing" class="quarto-figure quarto-figure-center quarto-float anchored" width="672">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dsst-reasons-missing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="analysis_files/figure-html/fig-dsst-reasons-missing-1.png" id="fig-dsst-reasons-missing" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-dsst-reasons-missing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="#fig-dsst-reasons-missing" class="quarto-xref">Figure&nbsp;1</a> displays the distribution of reasons for missing DSST scores.</p>
+<!--# Some variables with many categories (such as education, marital status, diet, and others) will be examined and, if necessary, collapsed into fewer levels to facilitate interpretation. -->
 </section>
 <section id="exploratory-data-analysis-eda" class="level2">
 <h2 class="anchored" data-anchor-id="exploratory-data-analysis-eda">Exploratory Data Analysis (EDA)</h2>

@@ -13,6 +13,13 @@ p {
 }
 </style>
 ```
+```{r}
+#| include: false
+trunc2 <- function(x) {
+  ifelse(is.na(x), NA, floor(x * 100) / 100)
+}
+```
+
 ## Research Question and Introduction
 
 ### Research Question
@@ -162,14 +169,31 @@ kable(
 
 <br>
 
-Overall, there are `r nrow(my_data)` rows and `r ncol(my_data)` columns (including `SEQN)`. Let's look at how many missing values are per variable:
+Overall, there are `r nrow(my_data)` rows and `r ncol(my_data)` columns (including `SEQN)`.
+
+Missing data (NA) will be addressed in the subsequent section.
+
+## Missing Data
+
+```{r}
+#| label: missing-data
+#| echo: false
+#| results: 'hide'
+#| message: false
+#| warning: false
+#| cache: false
+
+source("../scripts/data_missing.R")  # this script recode some values as NA
+```
+
+First, let's take a look at how many missing values are per variable:
 
 ```{r}
 #| echo: false
 #| warning: false
 
 library(dplyr)
-#library(knitr)
+library(knitr)
 
 # Compute missing count per column
 missing_count <- colSums(is.na(my_data))
@@ -190,11 +214,74 @@ kable(missing_table, caption = "Missing values per variable (Count and %)",     
 
 <br>
 
-Some variables include rare responses (e.g., “Refused” or “Don’t know”), which have been (cases: derived alcohol drinks per week, physical activity, and depression scores) or will be recoded as NA to simplify modeling and avoid inflating the number of levels with very few observations. This procedure may slightly increase overall missingness for certain predictors. Additionally, variables with many categories (such as education, marital status, diet, and others) will be examined and, if necessary, collapsed into fewer levels to facilitate interpretation.
+In total, there are `r sum(!complete.cases(my_data))` or around `r format(round(sum(!complete.cases(my_data)) / nrow(my_data) * 100, 2), nsmall = 2)`% incomplete rows.
 
-Missing data will be addressed in the subsequent section.
+Some variables include rare responses (e.g., “Refused” or “Don’t know”), which have been recoded as NA to simplify modeling and avoid inflating the number of levels with very few observations. This procedure slightly increased overall missingness for certain predictors. Notably:
 
-## Missing Data
+-   **Marital status:** 100% of missing values (n = 2) correspond to “Refused” and “Don’t know” responses.
+
+-   **Education level:** 100% of missing values (n = 3) correspond to “Don’t know.”
+
+-   **Sleep hours:** 40% of missing values (n = 2) correspond to “Don’t know.”
+
+-   **Healthy diet:** 100% of missing values (n = 1) correspond to “Don’t know.”
+
+-   **Diabetes:** 100% of missing values (n = 1) correspond to “Don’t know.”
+
+-   **Coronary disease:** 100% of missing values (n = 12) correspond to “Don’t know.”
+
+-   **Stroke:** 100% of missing values (n = 4) correspond to “Don’t know.”
+
+Several variables exhibit higher overall levels of missingness and warrant further investigation, including **smoking status** (`r format(missing_pct[9], nsmall = 2)`% missing), **income-to-poverty ratio** (`r format(missing_pct[7], nsmall = 2)`%), **alcohol consumption** (`r format(missing_pct[8], nsmall = 2)`%), **PHQ-9 score** (`r format(missing_pct[16], nsmall = 2)`% total missing; among these, 12.58% reflect partial questionnaire completion and were recoded as missing), and **BMI** (`r format(missing_pct[12], nsmall = 2)`%).
+
+The outcome variable, **DSST score**, has approximately `r format(missing_pct[2], nsmall = 2)`% missing values. Importantly, the NHANES survey provides explicit reasons for non-administration of the DSST (check `CFDDPP`, `CFDDRNC`, and `CFASTAT` variables in NHANES), allowing for a more informed assessment of outcome missingness.
+
+```{r}
+#| label: fig-dsst-reasons-missing
+#| echo: false
+#| warning: false
+
+library(dplyr)
+library(ggplot2)
+
+dsst_na <- cfq_h %>%
+  filter(is.na(CFDDS)) %>%
+  mutate(
+    DSST_NA_reason = case_when(
+      CFDDPP == "Failed"   ~ "Pretest failed",
+      CFDDPP == "Not done" & !is.na(CFDDRNC) ~ paste("Not done:", CFDDRNC),
+      is.na(CFDDPP) & !is.na(CFASTAT)        ~ paste("Not done:", CFASTAT),
+      TRUE ~ "Other"
+    )
+  )
+
+dsst_na_counts <- dsst_na %>%
+  count(DSST_NA_reason, sort = TRUE)
+
+dsst_na_counts <- dsst_na_counts %>%
+  mutate(pct = n / sum(n) * 100)
+
+ggplot(dsst_na_counts,
+       aes(x = reorder(DSST_NA_reason, pct), y = pct)) +
+  geom_col() +
+  geom_text(
+    aes(label = paste0(n, " (", sprintf("%.1f", pct), "%)")),
+    hjust = -0.1,
+    size = 3.5
+  ) +
+  coord_flip() +
+  labs(
+    title = "Reasons for Missing DSST Scores",
+    x = NULL,
+    y = "Percentage of missing DSST"
+  ) +
+  theme_minimal() +
+  expand_limits(y = max(dsst_na_counts$pct) * 1.2)
+```
+
+@fig-dsst-reasons-missing displays the distribution of reasons for missing DSST scores.
+
+<!--# Some variables with many categories (such as education, marital status, diet, and others) will be examined and, if necessary, collapsed into fewer levels to facilitate interpretation. -->
 
 ## Exploratory Data Analysis (EDA)
 

@@ -67,3 +67,24 @@ sum(
 # --
 # hypertension_evidence has 26 NAs (some of them are potentially manually set \\
 # e.g. when there wasn't at least one Yes or two Nos -> set to NA)
+
+# Exclude SEQN
+missing_matrix <- is.na(my_data[, -1])
+
+# Convert logical TRUE/FALSE to 1/0
+missing_dummy <- missing_matrix * 1
+
+# Quick checks
+#dim(missing_dummy)
+#head(missing_dummy)
+
+# identifying missing patterns
+missing_patterns <- apply(missing_dummy, 1, paste0, collapse = "")
+
+missing_pattern_counts <- sort(
+  table(missing_patterns),
+  decreasing = TRUE
+)
+
+#missing_pattern_counts
+#head(missing_pattern_counts, 10)

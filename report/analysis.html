@@ -194,9 +194,9 @@ Note
 <h3 class="anchored" data-anchor-id="variable-selection">Variable Selection</h3>
 <table class="table">
 <colgroup>
-<col style="width: 27%">
-<col style="width: 29%">
-<col style="width: 43%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 63%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -456,29 +456,27 @@ Note
 <caption>Missing values per variable (Count and %)</caption>
 <colgroup>
 <col style="width: 3%">
-<col style="width: 2%">
 <col style="width: 5%">
 <col style="width: 3%">
 <col style="width: 2%">
-<col style="width: 6%">
+<col style="width: 7%">
 <col style="width: 5%">
 <col style="width: 6%">
 <col style="width: 9%">
 <col style="width: 3%">
 <col style="width: 5%">
 <col style="width: 6%">
-<col style="width: 2%">
+<col style="width: 3%">
 <col style="width: 4%">
 <col style="width: 6%">
 <col style="width: 3%">
 <col style="width: 5%">
 <col style="width: 9%">
-<col style="width: 9%">
+<col style="width: 10%">
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;"></th>
-<th style="text-align: center;">SEQN</th>
 <th style="text-align: center;">dsst_score</th>
 <th style="text-align: center;">gender</th>
 <th style="text-align: center;">age</th>
@@ -501,52 +499,52 @@ Note
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Count</td>
+<td style="text-align: center;">193.00</td>
 <td style="text-align: center;">0</td>
-<td style="text-align: center;">193.0</td>
 <td style="text-align: center;">0</td>
+<td style="text-align: center;">2.00</td>
+<td style="text-align: center;">3.00</td>
+<td style="text-align: center;">201.00</td>
+<td style="text-align: center;">410.00</td>
+<td style="text-align: center;">895.00</td>
+<td style="text-align: center;">5.00</td>
+<td style="text-align: center;">1.00</td>
+<td style="text-align: center;">36.00</td>
+<td style="text-align: center;">1.00</td>
+<td style="text-align: center;">12.00</td>
+<td style="text-align: center;">4.00</td>
+<td style="text-align: center;">143.00</td>
 <td style="text-align: center;">0</td>
-<td style="text-align: center;">2.0</td>
-<td style="text-align: center;">3.0</td>
-<td style="text-align: center;">201.0</td>
-<td style="text-align: center;">410</td>
-<td style="text-align: center;">895.0</td>
-<td style="text-align: center;">5.0</td>
-<td style="text-align: center;">1.0</td>
-<td style="text-align: center;">36</td>
-<td style="text-align: center;">1.0</td>
-<td style="text-align: center;">12.0</td>
-<td style="text-align: center;">4.0</td>
-<td style="text-align: center;">143</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">26.0</td>
+<td style="text-align: center;">26.00</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Percent</td>
+<td style="text-align: center;">10.81</td>
 <td style="text-align: center;">0</td>
-<td style="text-align: center;">10.8</td>
 <td style="text-align: center;">0</td>
+<td style="text-align: center;">0.11</td>
+<td style="text-align: center;">0.17</td>
+<td style="text-align: center;">11.26</td>
+<td style="text-align: center;">22.97</td>
+<td style="text-align: center;">50.14</td>
+<td style="text-align: center;">0.28</td>
+<td style="text-align: center;">0.06</td>
+<td style="text-align: center;">2.02</td>
+<td style="text-align: center;">0.06</td>
+<td style="text-align: center;">0.67</td>
+<td style="text-align: center;">0.22</td>
+<td style="text-align: center;">8.01</td>
 <td style="text-align: center;">0</td>
-<td style="text-align: center;">0.1</td>
-<td style="text-align: center;">0.2</td>
-<td style="text-align: center;">11.3</td>
-<td style="text-align: center;">23</td>
-<td style="text-align: center;">50.1</td>
-<td style="text-align: center;">0.3</td>
-<td style="text-align: center;">0.1</td>
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">0.1</td>
-<td style="text-align: center;">0.7</td>
-<td style="text-align: center;">0.2</td>
-<td style="text-align: center;">8</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">1.5</td>
+<td style="text-align: center;">1.46</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 <p><br></p>
-<p>In total, there are 1128 or around 63.19% incomplete rows.</p>
+<p>In total, 1128 observations (corresponding to 63.19%) contain at least one missing value.</p>
+<p>Overall, 6.37% of all data entries in the analytic matrix are missing.</p>
+<p>Among participants with incomplete data, the average proportion of missing variables per individual is 0.1 (i.e., approximately 1.7 missing variables out of the 17 variables on average).</p>
 <p>Some variables include rare responses (e.g., “Refused” or “Don’t know”), which have been recoded as NA to simplify modeling and avoid inflating the number of levels with very few observations. This procedure slightly increased overall missingness for certain predictors. Notably:</p>
 <ul>
 <li><p><strong>Marital status:</strong> 100% of missing values (n = 2) correspond to “Refused” and “Don’t know” responses.</p></li>
@@ -557,8 +555,11 @@ Note
 <li><p><strong>Coronary disease:</strong> 100% of missing values (n = 12) correspond to “Don’t know.”</p></li>
 <li><p><strong>Stroke:</strong> 100% of missing values (n = 4) correspond to “Don’t know.”</p></li>
 </ul>
-<p>Several variables exhibit higher overall levels of missingness and warrant further investigation, including <strong>smoking status</strong> (50.10% missing), <strong>income-to-poverty ratio</strong> (11.30%), <strong>alcohol consumption</strong> (23.00%), <strong>PHQ-9 score</strong> (8.00% total missing; among these, 12.58% reflect partial questionnaire completion and were recoded as missing), and <strong>BMI</strong> (2.00%).</p>
-<p>The outcome variable, <strong>DSST score</strong>, has approximately 10.80% missing values. Importantly, the NHANES survey provides explicit reasons for non-administration of the DSST (check <code>CFDDPP</code>, <code>CFDDRNC</code>, and <code>CFASTAT</code> variables in NHANES), allowing for a more informed assessment of outcome missingness.</p>
+<p>Several variables exhibit higher overall levels of missingness and warrant further investigation, including <strong>smoking status</strong> (50.14% missing), <strong>income-to-poverty ratio</strong> (11.26%), <strong>alcohol consumption</strong> (22.97%), <strong>PHQ-9 score</strong> (8.01% total missing; among these, 12.58% reflect partial questionnaire completion and were recoded as missing), and <strong>BMI</strong> (2.02%).</p>
+<p>The distribution of missing-data patterns showed that missingness was concentrated in a relatively small number of recurring patterns. Complete data were observed for 657 participants (36.81%). Among incomplete observations, smoking status was frequently missing either alone (474 participants; 26.55%) or in combination with alcohol consumption (166 participants; 9.3%) or income-to-poverty ratio (65 participants; 3.64%). Income-to-poverty ratio was also missing alone in 60 participants (3.36%), while income-to-poverty ratio, alcohol consumption, and smoking status were all missing together in 34 participants (1.9%).</p>
+<p>Overall, the first six most common patterns, including the complete-data pattern, accounted for 1456 participants (81.57%). This shows that missingness was not spread across many unrelated combinations but was concentrated in a relatively small number of recurring patterns, particularly involving smoking, alcohol, and income. Less frequent patterns also involved simultaneous missingness in the DSST score and PHQ-9 score. These patterns were considered when investigating the potential reasons for missing data and deciding how missing values should be handled.</p>
+<!--# analysis for later -->
+<p>The outcome variable, <strong>DSST score</strong>, has approximately 10.81% missing values. Importantly, the NHANES survey provides explicit reasons for non-administration of the DSST (check <code>CFDDPP</code>, <code>CFDDRNC</code>, and <code>CFASTAT</code> variables in NHANES), allowing for a more informed assessment of outcome missingness.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-dsst-reasons-missing" class="quarto-figure quarto-figure-center quarto-float anchored" width="672">
@@ -574,6 +575,7 @@ Figure&nbsp;1
 </div>
 </div>
 <p><a href="#fig-dsst-reasons-missing" class="quarto-xref">Figure&nbsp;1</a> displays the distribution of reasons for missing DSST scores.</p>
+<p>Participants who failed the DSST pretest are expected to have systematically lower DSST scores, indicating that missingness in this group is not at random.</p>
 <!--# Some variables with many categories (such as education, marital status, diet, and others) will be examined and, if necessary, collapsed into fewer levels to facilitate interpretation. -->
 </section>
 <section id="exploratory-data-analysis-eda" class="level2">

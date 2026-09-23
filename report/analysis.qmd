@@ -119,7 +119,7 @@ Data from multiple NHANES components were merged using the unique participant id
 ### Variable Selection
 
 | Predictor                                                | Variable(s) in NHANES                                      | Description                                                                                                                                                                                                                                                                                                                           |
-|--------------------|---------------------|-------------------------------|
+|-------------|-------------|----------------------------------------------|
 | Age                                                      | `RIDAGEYR`                                                 | Direct measure, continuous.                                                                                                                                                                                                                                                                                                           |
 | Gender                                                   | `RIAGENDR`                                                 | Direct measure, categorical, nominal.                                                                                                                                                                                                                                                                                                 |
 | Marital status                                           | `DMDMARTL`                                                 | Comprehensive categorical measure, nominal.                                                                                                                                                                                                                                                                                           |
@@ -196,10 +196,10 @@ library(dplyr)
 library(knitr)
 
 # Compute missing count per column
-missing_count <- colSums(is.na(my_data))
+missing_count <- colSums(is.na(my_data[, -1]))
 
 # Compute missing percentage per column
-missing_pct <- round(missing_count / nrow(my_data) * 100, 1)
+missing_pct <- round(missing_count / nrow(my_data) * 100, 2)
 
 # Combine into a compact table: variables as columns
 missing_table <- rbind(
@@ -214,7 +214,11 @@ kable(missing_table, caption = "Missing values per variable (Count and %)",     
 
 <br>
 
-In total, there are `r sum(!complete.cases(my_data))` or around `r format(round(sum(!complete.cases(my_data)) / nrow(my_data) * 100, 2), nsmall = 2)`% incomplete rows.
+In total, `r sum(!complete.cases(my_data))` observations (corresponding to `r round(sum(!complete.cases(my_data)) / nrow(my_data) * 100, 2)`%) contain at least one missing value.
+
+Overall, `r round(mean(missing_dummy) * 100, 2)`% of all data entries in the analytic matrix are missing.
+
+Among participants with incomplete data, the average proportion of missing variables per individual is `r round(mean(rowMeans(is.na(my_data))[rowSums(is.na(my_data)) > 0]), 2)` (i.e., approximately `r round(mean(rowMeans(is.na(my_data))[rowSums(is.na(my_data)) > 0]), 2) * (ncol(my_data) - 1)` missing variables out of the `r ncol(my_data) - 1` variables on average).
 
 Some variables include rare responses (e.g., “Refused” or “Don’t know”), which have been recoded as NA to simplify modeling and avoid inflating the number of levels with very few observations. This procedure slightly increased overall missingness for certain predictors. Notably:
 
@@ -232,9 +236,15 @@ Some variables include rare responses (e.g., “Refused” or “Don’t know”
 
 -   **Stroke:** 100% of missing values (n = 4) correspond to “Don’t know.”
 
-Several variables exhibit higher overall levels of missingness and warrant further investigation, including **smoking status** (`r format(missing_pct[9], nsmall = 2)`% missing), **income-to-poverty ratio** (`r format(missing_pct[7], nsmall = 2)`%), **alcohol consumption** (`r format(missing_pct[8], nsmall = 2)`%), **PHQ-9 score** (`r format(missing_pct[16], nsmall = 2)`% total missing; among these, 12.58% reflect partial questionnaire completion and were recoded as missing), and **BMI** (`r format(missing_pct[12], nsmall = 2)`%).
+Several variables exhibit higher overall levels of missingness and warrant further investigation, including **smoking status** (`r missing_pct[8]`% missing), **income-to-poverty ratio** (`r missing_pct[6]`%), **alcohol consumption** (`r missing_pct[7]`%), **PHQ-9 score** (`r missing_pct[15]`% total missing; among these, 12.58% reflect partial questionnaire completion and were recoded as missing), and **BMI** (`r missing_pct[11]`%).
 
-The outcome variable, **DSST score**, has approximately `r format(missing_pct[2], nsmall = 2)`% missing values. Importantly, the NHANES survey provides explicit reasons for non-administration of the DSST (check `CFDDPP`, `CFDDRNC`, and `CFASTAT` variables in NHANES), allowing for a more informed assessment of outcome missingness.
+The distribution of missing-data patterns showed that missingness was concentrated in a relatively small number of recurring patterns. Complete data were observed for `r sum(complete.cases(my_data))` participants (`r round(sum(complete.cases(my_data))/nrow(my_data)*100, 2)`%). Among incomplete observations, smoking status was frequently missing either alone (`r missing_pattern_counts["00000001000000000"]` participants; `r round(missing_pattern_counts["00000001000000000"]/nrow(my_data)*100, 2)`%) or in combination with alcohol consumption (`r missing_pattern_counts["00000011000000000"]` participants; `r round(missing_pattern_counts["00000011000000000"]/nrow(my_data)*100, 2)`%) or income-to-poverty ratio (`r missing_pattern_counts["00000101000000000"]` participants; `r round(missing_pattern_counts["00000101000000000"]/nrow(my_data)*100, 2)`%). Income-to-poverty ratio was also missing alone in `r missing_pattern_counts["00000100000000000"]` participants (`r round(missing_pattern_counts["00000100000000000"]/nrow(my_data)*100, 2)`%), while income-to-poverty ratio, alcohol consumption, and smoking status were all missing together in `r missing_pattern_counts["00000111000000000"]` participants (`r round(missing_pattern_counts["00000111000000000"]/nrow(my_data)*100, 2)`%).
+
+Overall, the first six most common patterns, including the complete-data pattern, accounted for `r 1456` participants (`r round(1456/nrow(my_data)*100, 2)`%). This shows that missingness was not spread across many unrelated combinations but was concentrated in a relatively small number of recurring patterns, particularly involving smoking, alcohol, and income. Less frequent patterns also involved simultaneous missingness in the DSST score and PHQ-9 score. These patterns were considered when investigating the potential reasons for missing data and deciding how missing values should be handled.
+
+<!--# analysis for later -->
+
+The outcome variable, **DSST score**, has approximately `r missing_pct[1]`% missing values. Importantly, the NHANES survey provides explicit reasons for non-administration of the DSST (check `CFDDPP`, `CFDDRNC`, and `CFASTAT` variables in NHANES), allowing for a more informed assessment of outcome missingness.
 
 ```{r}
 #| label: fig-dsst-reasons-missing
@@ -280,6 +290,8 @@ ggplot(dsst_na_counts,
 ```
 
 @fig-dsst-reasons-missing displays the distribution of reasons for missing DSST scores.
+
+Participants who failed the DSST pretest are expected to have systematically lower DSST scores, indicating that missingness in this group is not at random.
 
 <!--# Some variables with many categories (such as education, marital status, diet, and others) will be examined and, if necessary, collapsed into fewer levels to facilitate interpretation. -->
 
